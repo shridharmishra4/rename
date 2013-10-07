@@ -84,8 +84,8 @@ class rename(object):
         def printfinalfilename():
             return(fln)
             
-        ui1.rename.browse.clicked.connect(Commondialog)
-        ui1.rename.rename.clicked.connect(self.renamen)
+##        ui1.rename.browse.clicked.connect(Commondialog)
+##        ui1.rename.rename.clicked.connect(self.renamen)
         ui1.pushButton.clicked.connect(commondialog)
 
         
@@ -102,17 +102,17 @@ class rename(object):
 
 
 
-ui=new.Ui_MainWindow()
+ui1=new.Ui_MainWindow()
 
 
 if __name__=="__main__":    
         
         app = QtGui.QApplication(sys.argv)
         mainWindow=QtGui.QMainWindow()
-        ui.setupUi(mainWindow)
+        ui1.setupUi(mainWindow)
         mainWindow.show()
-        mainWindow.show()
-        #ui.pushButton.clicked.connect(b.ui.browse)
+##        obj=rename()
+##        ui.pushButton.clicked.connect(obj.Commondialog())
         
         
 #        comm = MainClientWindow()
