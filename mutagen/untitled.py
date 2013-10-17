@@ -29,10 +29,8 @@ import Tkinter
 import tkFileDialog
 import glob
 from mutagen import id3
-
-songs=[]
-filename=[]
-
+#from mutagen.easyid3 import EasyID3
+#print EasyID3.valid_keys.keys()
 def Commondialog():
                 root = Tkinter.Tk()
                 root.withdraw()
@@ -48,41 +46,52 @@ def Commondialog():
                 
                 
                 
-def mp3list():
-	
-	for filename in glob.glob("*.mp3"):
-		
-		print filename
-		#print songs 
-
-	
-		#return songs                          	
-					
-#listlen=len(songs)
-#for items in songs:
-	#print items
-                    
-                   
 Commondialog()
-mp3list()
+                 
+filenames=glob.glob("*.mp3")
+#for files in filenames:
+    #print files
+    #filenames.append(files)
+    
+    
+     
+         
+        
 
+title=[]
+artist=[]
+album=[]                   
+
+
+length=len(filenames)
 #from mutagen.mp3 import MP3
 #audio = MP3("Aisha.mp3")
 #print audio.info.length, audio.info.bitrate,audio.title
 #id3.getall('TTTT') == []
-m= mutagen.File(filename, easy=True)
-title=m['title']
-artist=m['artist']
-album=m['album']
+m= mutagen.File(filenames[0], easy=True)
+print m['title']
+for i in range (0,length):
+    m= mutagen.File(filenames[i], easy=True)
+    #title.append(m['title'])
+    #artist.append(m['artist'])
+    #album.append(m['album'])
+    print """
+             %s 
+             %s  
+             %s""" %(m['title'],m['artist'],m['album'])
 
-print "%s --- %s--%s" %(title,artist,album)
+
+
+
+    
+    
 
 
 
 def main():
-	
-	return 0
+    
+    return 0
 
 if __name__ == '__main__':
-	main()
+    main()
 
