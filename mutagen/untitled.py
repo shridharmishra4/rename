@@ -3,7 +3,7 @@
 #
 #  untitled.py
 #  
-#  Copyright 2013 shridhar <shridhar@shridhar>
+#  Copyright 2013 Shridhar Mishra <shridhar@shridhar>
 #  
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -59,9 +59,9 @@ start_dir = os.getcwd()
 pattern   = "*.mp3"
 
 for dir ,_,_ in os.walk(start_dir):
-	files.extend(glob(os.path.join(dir,pattern)))
+	files.extend(glob(os.path.join(dir,pattern)))"""song names with path name"""
 for file in files:
-	filenames.append(os.path.basename(file))
+	filenames.append(os.path.basename(file)) """ song names only"""
 
 files.sort()
 #filenames.sort()
@@ -101,16 +101,7 @@ for i in xrange (length):
              %s  
              %s""" %(m['title'],m['artist'],m['album'])
  
-             
-
-
-
-
-    
-    
-
-
-
+      
 def main():
     
     return 0
