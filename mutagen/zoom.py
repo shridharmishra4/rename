@@ -31,17 +31,19 @@ import glob
 from mutagen import id3
 from glob import glob
 from mutagen import *
-import sqlite3
+import sqlite3 as lite
+import sys
 
 
 
-conn = sqlite3.connect('mysongs.db')
-c = conn.cursor()
-c.execute("DROP TABLE music")
-c.execute('''CREATE TABLE music
-             (title text, artist text, album text)''')
 
-
+con = lite.connect('khachachitta.db')
+with con:
+    
+    cur = con.cursor()
+    cur.execute("DROP TABLE IF EXISTS music")    
+    cur.execute("CREATE TABLE music(title TEXT, artist TEXT, album TEXT)")
+    
 #from mutagen.easyid3 import EasyID3
 #print EasyID3.valid_keys.keys()
 def Commondialog():
@@ -64,23 +66,18 @@ files = []
 filenames = []
 start_dir = os.getcwd()
 pattern   = "*.mp3"
-keyerror=[]
 
 for dir ,_,_ in os.walk(start_dir):
-	files.extend(glob(os.path.join(dir,pattern)))
-##	"""song names with path name"""
+	files.extend(glob(os.path.join(dir,pattern)))   
 for file in files:
-	filenames.append(os.path.basename(file))
-##	""" song names only"""
-
+	filenames.append(os.path.basename(file)) 
 files.sort()
 #filenames.sort()
-##print filenames
+print filenames
 
-length= len(files)
 
 print """ 
-         Number of songs in the folder ==> %s""" %(length)
+         Number of songs in the folder ==> %s""" %(len(files))
 
 	
 
@@ -89,6 +86,12 @@ print """
      
          
         
+length= len(files)
+title=[]
+artist=[]
+album=[]
+keyerror=[]
+headerfile=[]                   
 
 
 
@@ -97,22 +100,27 @@ print """
 #print audio.info.length, audio.info.bitrate,audio.title
 #id3.getall('TIT2') == [id3['TIT2']]
 #m= mutagen.File(filenames[0], easy=True)
-
-
-
-
 for i in xrange (length):
 	try:
 		m= mutagen.File(files[i], easy=True)
-		tit=str((m['title']))
-		art=str((m['artist']))
-		alb=str((m['album']))
-		c.execute('INSERT INTO music VALUES (?,?,?)',(tit,art,alb))
-		conn.commit()
-		c.execute('SELECT * FROM music ORDER BY title')
-	
-	
-	
+		title.append(m['title'])
+		artist.append(m['artist'])
+		album.append(m['album'])
+		with con:
+			cur = con.cursor()   
+			cur.executemany("INSERT INTO music VALUES(title[i], artist[i], album[i])")
+    
+
+
+		
+		
+		
+		
+		
+		#print """
+				#%s 
+				#%s  
+				#%s""" %(m['title'],m['artist'],m['album'])
 	except (KeyError,mutagen.mp3.HeaderNotFoundError):		
 		
 		if KeyError:
@@ -120,19 +128,79 @@ for i in xrange (length):
 				
 		continue
 		
-print c.fetchall()
-conn.close()
-#print """keyerror ==> %s """%(keyerror
-		
+
+
+print """keyerror ==> %s
+		 headerror ==> %s"""%(keyerror,headerfile)
+
+
+
+
+
+
+#con = lite.connect('test.db')
+
+#with con:
     
+    #cur = con.cursor()    
+    
+    #cur.execute("DROP TABLE IF EXISTS Cars")
+    #cur.execute("CREATE TABLE Cars(Id INT, Name TEXT, Price INT)")
+    #cur.executemany("INSERT INTO Cars VALUES(?, ?, ?)", cars)
 
 
-##    print """
-##             %s 
-##             %s  
-##             %s""" %(m['title'],m['artist'],m['album'])
-##
-##print listd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       
 def main():
     

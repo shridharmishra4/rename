@@ -59,10 +59,9 @@ start_dir = os.getcwd()
 pattern   = "*.mp3"
 
 for dir ,_,_ in os.walk(start_dir):
-	files.extend(glob(os.path.join(dir,pattern)))"""song names with path name"""
+	files.extend(glob(os.path.join(dir,pattern)))   
 for file in files:
-	filenames.append(os.path.basename(file)) """ song names only"""
-
+	filenames.append(os.path.basename(file)) 
 files.sort()
 #filenames.sort()
 print filenames
@@ -82,7 +81,6 @@ length= len(files)
 title=[]
 artist=[]
 album=[]                   
-title2=[]
 
 
 
