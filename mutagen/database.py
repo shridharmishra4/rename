@@ -82,15 +82,6 @@ length= len(files)
 print """ 
          Number of songs in the folder ==> %s""" %(length)
 
-	
-
-
-    
-     
-         
-        
-
-
 
 #from mutagen.mp3 import MP3
 #audio = MP3("Aisha.mp3")
