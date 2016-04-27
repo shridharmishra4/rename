@@ -1,5 +1,4 @@
-
-#!/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 #  MainClientWindow.py
@@ -22,102 +21,58 @@
 #  MA 02110-1301, USA.
 #  
 #  
-from PyQt4 import QtCore, QtGui
-from PyQt4.QtCore import QObject, pyqtSignal,pyqtSlot
-import sys
-import os
 import Tkinter
-import tkFileDialog
-import re
 import glob
 import new
+import os
+import sys
+import tkFileDialog
+
+from PyQt4 import QtGui
+
 
 class rename(object):
     def __init__(self):
         self.filename = []
-        self.fln=[]
-        ui1=rename()
-        
-    
-    
-    
-        
-        
-        
-        
-        
+        self.fln = []
+        ui1 = rename()
+
         def Commondialog(self):
-                self.root = Tkinter.Tk()
-                self.root.withdraw()
-                
-                raw_input("Press enter to select the directory")
-                
-                dirname=tkFileDialog.askdirectory(parent=root,initialdir="/home/shridhar/Desktop",title='Please select a directory')
-                print dirname
-                extension=raw_input("Enter the file extension:")
-                #length=len(extension)
-                os.chdir(dirname)
-        
-        
+            self.root = Tkinter.Tk()
+            self.root.withdraw()
+
+            raw_input("Press enter to select the directory")
+
+            dirname = tkFileDialog.askdirectory(parent=root, initialdir="/home/shridhar/Desktop",
+                                                title='Please select a directory')
+            print dirname
+            extension = raw_input("Enter the file extension:")
+            os.chdir(dirname)
+
         def strdelete():
-            keyword=raw_input('enter string to be removed:')
-            return(keyword)
-            
-                    
-        def renamen(self):                          
-                for filename in glob.glob("*."+extension):
-                    
-                    initialfilename.append(filename)
-                    fln.append((filename.strip(keyword)))
-                    os.rename(filename, fln)
-                    #print filename
-                    #print fln
-                    #print "\n"
-                           
-                
+            keyword = raw_input('enter string to be removed:')
+            return (keyword)
+
+        def renamen(self):
+            for filename in glob.glob("*." + extension):
+                initialfilename.append(filename)
+                fln.append((filename.strip(keyword)))
+                os.rename(filename, fln)
+
         def printinititalfilename():
-            return(filename)
-            
-            
-        
-        
+            return (filename)
+
         def printfinalfilename():
-            return(fln)
-            
-##        ui1.rename.browse.clicked.connect(Commondialog)
-##        ui1.rename.rename.clicked.connect(self.renamen)
+            return (fln)
+
         ui1.pushButton.clicked.connect(commondialog)
 
-        
-#        c=Commondialog(0)
-##        a=Ui_MainWindow
-##        b=a.setupUi
-##        exec c
-        
-        ##        renamen.Ui_MainWindow.setupUi(a,b)
 
-        
-##        a.start.clicked.connect(self.start)
-##        a.end.clicked.connect(self.end)                      
+ui1 = new.Ui_MainWindow()
 
-
-
-ui1=new.Ui_MainWindow()
-
-
-if __name__=="__main__":    
-        
-        app = QtGui.QApplication(sys.argv)
-        mainWindow=QtGui.QMainWindow()
-        ui1.setupUi(mainWindow)
-        mainWindow.show()
-##        obj=rename()
-##        ui.pushButton.clicked.connect(obj.Commondialog())
-        
-        
-#        comm = MainClientWindow()
-#        comm.show()
-        sys.exit(app.exec_())
-        
-
-
+if __name__ == "__main__":
+    app = QtGui.QApplication(sys.argv)
+    mainWindow = QtGui.QMainWindow()
+    ui1.setupUi(mainWindow)
+    mainWindow.show()
+    sys.exit(app.exec_())
